@@ -1,4 +1,4 @@
-# TengClaw Usage Guide
+# TENG_CLAW Usage Guide
 
 This document introduces the public-facing usage of TengClaw for an open-source code release. It focuses on what TengClaw does, which tools are exposed, how to read the outputs, and how to structure a typical research workflow.
 
