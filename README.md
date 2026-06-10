@@ -596,7 +596,7 @@ For papers, demos, or open-source examples, the most useful outputs to show are:
 - controlled self-extension proposal flow
 
 
-## 13. Contributing
+## 13. Third-party notices
 
 TengClaw is built on top of OpenClaw.
 
