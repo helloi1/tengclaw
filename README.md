@@ -595,60 +595,11 @@ For papers, demos, or open-source examples, the most useful outputs to show are:
 - research state
 - controlled self-extension proposal flow
 
-## 12. Code Availability
 
-TengClaw is currently being prepared for open-source release.
+## 13. Contributing
 
-- The public usage site and documentation are already available
-- The source code repository will be published soon
-- Repository layout, installation instructions, and development notes are coming soon
+TengClaw is built on top of OpenClaw.
 
-For updates, watch:
-
-- `https://github.com/helloi1/TENGAgent`
-
-## 13. OpenClaw Attribution and License Notice
-
-TengClaw is built on top of OpenClaw and adapts the OpenClaw gateway and workspace stack for TENG-oriented simulation and research workflows.
-
-OpenClaw repository:
-
-- `https://github.com/openclaw/openclaw`
-
-OpenClaw is distributed under the MIT License. In accordance with the license terms, the OpenClaw copyright notice and permission notice must be included in all copies or substantial portions of the software.
-
-OpenClaw copyright notice:
-
-```text
-MIT License
-
-Copyright (c) 2025 Peter Steinberger
-Copyright (c) 2026 helloi1
-```
-
-For the full OpenClaw license text, see:
-
-- `https://github.com/openclaw/openclaw/blob/main/LICENSE`
-
-If you use TengClaw in research, demos, or derivative systems, please also acknowledge the OpenClaw project as the underlying assistant platform and gateway framework.
-
-## 14. Citation
-
-If you use TengClaw in academic work, demos, derivative systems, or public benchmarks, please cite both the TengClaw repository and the upstream OpenClaw repository.
-
-Suggested citation for TengClaw:
-
-```bibtex
-@misc{tengclaw2026,
-  title        = {TENGAgent / TengClaw},
-  author       = {Wang, Baiqiao and collaborators},
-  year         = {2026},
-  howpublished = {\url{https://github.com/helloi1/TENGAgent}},
-  note         = {Code release coming soon}
-}
-```
-
-Suggested citation for OpenClaw:
 
 ```bibtex
 @misc{openclaw,
