@@ -4,6 +4,16 @@ This document introduces the public-facing usage of TengClaw for an open-source 
 
 Web access url: https://knowing-feelings-register-plasma.trycloudflare.com
 
+Should our website be of assistance to you, kindly leave us a star.
+
+The paper introducing the physical core and implementation methodology of this platform will soon be released on arXiv.
+Previous foundational theoretical work: 
+1. Zhao, Hongfa, et al. "Theoretical modeling of contact-separation mode triboelectric nanogenerators from initial charge distribution." Energy & Environmental Science 17.6 (2024): 2228-2247. DOI: 10.1039/d3ee04143c
+2. Zhao, Hongfa, et al. "Theoretical analysis of triboelectric nanogenerators: Charge mechanisms, energy conversion, and multifunctional applications." Nano Energy (2025): 111382. DOI: 10.1016/j.nanoen.2025.111382
+3. Wang, Baiqiao, et al. "Ionic-electrostatic modeling of solid-liquid triboelectric nanogenerators." Iontronics 2.2 (2026): N-A. DOI: 10.20517/iontronics.2026.009
+
+Citations are welcome.
+
 ## 1. What TengClaw Is
 
 TengClaw is a physics-grounded multi-agent simulation lab for TENG research.
