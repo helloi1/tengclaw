@@ -16,7 +16,7 @@ Citations are welcome.
 
 ## 1. What TengClaw Is
 
-TengClaw is a physics-grounded multi-agent simulation lab for TENG research.
+TengClaw is a physics-grounded multi-agent simulation lab developed based on openclaw for TENG research.
 
 The main workflow is:
 
