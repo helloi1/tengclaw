@@ -1,13 +1,13 @@
-# TENG_CLAW Usage Guide
+# TengClaw Usage Guide
 
-This document introduces the public-facing usage of TengClaw for an open-source code release. It focuses on what TengClaw does, which tools are exposed, how to read the outputs, and how to structure a typical research workflow.
+This document introduces the public-facing usage of TengClaw ahead of the open-source code release. It focuses on what TengClaw does, which tools are exposed, how to read the outputs, and how to structure a typical research workflow.
 
 Web access url: https://knowing-feelings-register-plasma.trycloudflare.com
 
 Should our website be of assistance to you, kindly leave us a star.
 
-The paper introducing the physical core and implementation methodology of this platform will soon be released on arXiv.
-Previous foundational theoretical work: 
+The paper introducing the physical core and implementation methodology of this platform will soon be released on arXiv. Previous foundational theoretical work:
+
 1. Zhao, Hongfa, et al. "Theoretical modeling of contact-separation mode triboelectric nanogenerators from initial charge distribution." Energy & Environmental Science 17.6 (2024): 2228-2247. DOI: 10.1039/d3ee04143c
 2. Zhao, Hongfa, et al. "Theoretical analysis of triboelectric nanogenerators: Charge mechanisms, energy conversion, and multifunctional applications." Nano Energy (2025): 111382. DOI: 10.1016/j.nanoen.2025.111382
 3. Wang, Baiqiao, et al. "Ionic-electrostatic modeling of solid-liquid triboelectric nanogenerators." Iontronics 2.2 (2026): N-A. DOI: 10.20517/iontronics.2026.009
@@ -16,7 +16,7 @@ Citations are welcome.
 
 ## 1. What TengClaw Is
 
-TengClaw is a physics-grounded multi-agent simulation lab developed based on openclaw for TENG research.
+TengClaw is a physics-grounded multi-agent simulation lab for TENG research.
 
 The main workflow is:
 
@@ -39,7 +39,9 @@ TengClaw is designed to help users:
 - compare candidate designs
 - inspect time-series, field snapshots, and field animations
 - preserve results through run artifacts, experiment graphs, and session memory
-- propose controlled extensions when a request is unsupported but falls into a supported extension family
+- understand when a request is unsupported and, in local/admin research mode, propose controlled extensions for supported extension families
+
+In addition to conversational orchestration, TengClaw also supports a manual simulation workflow through the workspace UI. This is useful when the user already knows the target mode, geometry, material parameters, motion definition, and output type, and wants a more direct path to execution without relying on natural-language compilation.
 
 ## 2. Core Architecture
 
@@ -111,7 +113,7 @@ These actions are backed by the solver and worker code in the repository.
 
 ### 3.2 Experimental Backend
 
-The experimental backend is used only for controlled extension scenarios.
+The experimental backend is used only for controlled extension scenarios in local/admin research mode.
 
 It follows three rules:
 
@@ -126,6 +128,8 @@ The current narrow extension family is:
 - field visualization adaptor
 
 TengClaw does not automatically invent arbitrary new physical solvers for unsupported requests.
+
+In the public trial workspace, controlled extension requests are reported as unsupported with stable alternatives instead of generating or registering experimental modules.
 
 ## 4. Public Tools
 
@@ -161,11 +165,39 @@ Lower-level tools are best used when:
 - one backend input/output needs debugging
 - multi-agent orchestration is unnecessary
 
-Internal actions such as `critic_preflight` and `extend_solver` are not intended to be called directly by ordinary users.
+Internal actions such as `critic_preflight` and `extend_solver` are not intended to be called directly by ordinary users. Public trial tenants cannot run `extend_solver`.
 
-## 5. Outputs and Research State
+## 5. Manual Simulation Mode
 
-### 5.1 `teng_result`
+In addition to the chat-first workflow, TengClaw provides a manual simulation mode in the workspace UI through `Manual Sim`.
+
+Manual simulation mode is recommended when:
+
+- the simulation parameters are already fully known
+- a user wants a direct and explicit configuration flow
+- strict reproduction of a known setup matters
+- the user wants to inspect one concrete solver path without conversational orchestration
+
+Typical manual-simulation usage includes:
+
+- entering a fixed geometry and material configuration
+- choosing a specific stable action such as `simulate`, `timeseries`, or `field_snapshot`
+- setting motion, resolution, and device parameters directly
+- running a solver with minimal interpretation overhead
+
+Compared with `tengclaw_orchestrate`:
+
+- `tengclaw_orchestrate` is better for research exploration, incomplete requests, comparison planning, and result interpretation
+- manual simulation mode is better for explicit parameter entry, controlled reproduction, and quick solver execution
+
+A practical recommendation is:
+
+- start with `tengclaw_orchestrate` when the research question is still open-ended
+- switch to manual simulation mode once the physical setup is stable and you want repeatable runs or targeted debugging
+
+## 6. Outputs and Research State
+
+### 6.1 `teng_result`
 
 `teng_result` is the result card. It typically contains:
 
@@ -178,7 +210,7 @@ Internal actions such as `critic_preflight` and `extend_solver` are not intended
 
 It answers the practical question: what result did this run produce?
 
-### 5.2 `teng_trace`
+### 6.2 `teng_trace`
 
 `teng_trace` is the research trace. It typically contains:
 
@@ -193,7 +225,7 @@ It answers the practical question: what result did this run produce?
 
 It answers the reasoning question: why did TengClaw choose this path?
 
-### 5.3 Experiment Graph
+### 6.3 Experiment Graph
 
 The experiment graph records structured research nodes. A graph entry may include:
 
@@ -207,7 +239,7 @@ The experiment graph records structured research nodes. A graph entry may includ
 - `conclusion`
 - `artifacts`
 
-### 5.4 Research State
+### 6.4 Research State
 
 Session-level research state may include:
 
@@ -220,9 +252,9 @@ Session-level research state may include:
 
 This lets TengClaw continue a research thread without requiring the user to restate every detail.
 
-## 6. Key Data Structures
+## 7. Key Data Structures
 
-### 6.1 `TENG-IR`
+### 7.1 `TENG-IR`
 
 `TENG-IR` is the structured research object compiled from the user request. Core fields include:
 
@@ -243,7 +275,7 @@ This lets TengClaw continue a research thread without requiring the user to rest
 - `support_status`
 - `capability_gap`
 
-### 6.2 `PhysicsCriticReport`
+### 7.2 `PhysicsCriticReport`
 
 `PhysicsCriticReport` describes physical executability and risk. Core fields include:
 
@@ -260,7 +292,7 @@ This lets TengClaw continue a research thread without requiring the user to rest
 - `candidate_action`
 - `source`
 
-### 6.3 `ExperimentGraphEntry`
+### 7.3 `ExperimentGraphEntry`
 
 `ExperimentGraphEntry` is a run-level research node. Core fields include:
 
@@ -283,7 +315,7 @@ This lets TengClaw continue a research thread without requiring the user to rest
 - `extension`
 - `experimental_registry_ref`
 
-## 7. Run Artifacts
+## 8. Run Artifacts
 
 A typical run directory contains:
 
@@ -309,7 +341,7 @@ Common artifact types are:
 - dynamic field animation
 - per-run experiment graph entry
 
-## 8. Example Workflow
+## 9. Example Workflow
 
 ### Step 1: Start with a Research Goal
 
@@ -327,6 +359,8 @@ TengClaw will:
 - choose a backend plan
 - execute a supported stable action when possible
 - return `teng_result` when a run is produced
+
+If the setup is already known in advance, the same study can also start from `Manual Sim` instead of chat. That path is often faster for benchmark reproduction or parameter-controlled testing.
 
 ### Step 2: Run a Single Snapshot
 
@@ -514,7 +548,7 @@ Example confirmation:
 Confirm the proposed extension plan and continue.
 ```
 
-## 9. Common Questions
+## 10. Common Questions
 
 ### Why do I see a trace but no execution result?
 
@@ -540,17 +574,18 @@ Use `tengclaw_orchestrate` for research tasks, comparison, exploration, incomple
 
 Use a lower-level tool for strict reproduction, fully specified inputs, or backend debugging.
 
-## 10. Recommended Usage Pattern
+## 11. Recommended Usage Pattern
 
 A practical TengClaw workflow is:
 
 1. State the research goal in natural language.
 2. Let TengClaw generate a baseline.
-3. Use `timeseries` and `study` to compare candidate behavior.
-4. Use `field_snapshot` and `field_animation` to interpret the physics.
-5. Use `report` to preserve and revisit results.
-6. Continue the study through session memory and experiment graph context.
-7. For unsupported requests, review the extension proposal before confirming.
+3. Move to manual simulation mode once the setup is stable and repeatable execution matters.
+4. Use `timeseries` and `study` to compare candidate behavior.
+5. Use `field_snapshot` and `field_animation` to interpret the physics.
+6. Use `report` to preserve and revisit results.
+7. Continue the study through session memory and experiment graph context.
+8. For unsupported requests, review the extension proposal before confirming.
 
 For papers, demos, or open-source examples, the most useful outputs to show are:
 
@@ -559,4 +594,67 @@ For papers, demos, or open-source examples, the most useful outputs to show are:
 - experiment graph entries
 - research state
 - controlled self-extension proposal flow
+
+## 12. Code Availability
+
+TengClaw is currently being prepared for open-source release.
+
+- The public usage site and documentation are already available
+- The source code repository will be published soon
+- Repository layout, installation instructions, and development notes are coming soon
+
+For updates, watch:
+
+- `https://github.com/helloi1/TENGAgent`
+
+## 13. OpenClaw Attribution and License Notice
+
+TengClaw is built on top of OpenClaw and adapts the OpenClaw gateway and workspace stack for TENG-oriented simulation and research workflows.
+
+OpenClaw repository:
+
+- `https://github.com/openclaw/openclaw`
+
+OpenClaw is distributed under the MIT License. In accordance with the license terms, the OpenClaw copyright notice and permission notice must be included in all copies or substantial portions of the software.
+
+OpenClaw copyright notice:
+
+```text
+MIT License
+
+Copyright (c) 2025 Peter Steinberger
+Copyright (c) 2026 helloi1
+```
+
+For the full OpenClaw license text, see:
+
+- `https://github.com/openclaw/openclaw/blob/main/LICENSE`
+
+If you use TengClaw in research, demos, or derivative systems, please also acknowledge the OpenClaw project as the underlying assistant platform and gateway framework.
+
+## 14. Citation
+
+If you use TengClaw in academic work, demos, derivative systems, or public benchmarks, please cite both the TengClaw repository and the upstream OpenClaw repository.
+
+Suggested citation for TengClaw:
+
+```bibtex
+@misc{tengclaw2026,
+  title        = {TENGAgent / TengClaw},
+  author       = {Wang, Baiqiao and collaborators},
+  year         = {2026},
+  howpublished = {\url{https://github.com/helloi1/TENGAgent}},
+  note         = {Code release coming soon}
+}
+```
+
+Suggested citation for OpenClaw:
+
+```bibtex
+@misc{openclaw,
+  title        = {OpenClaw},
+  author       = {OpenClaw contributors},
+  howpublished = {\url{https://github.com/openclaw/openclaw}}
+}
+```
 
