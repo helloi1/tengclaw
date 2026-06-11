@@ -574,29 +574,10 @@ Use `tengclaw_orchestrate` for research tasks, comparison, exploration, incomple
 
 Use a lower-level tool for strict reproduction, fully specified inputs, or backend debugging.
 
-## 11. Recommended Usage Pattern
+## 11. Contact information
+If there is any question or you need technical support, plaease contact: zhaoh1040@163.com; 2493620867@qq.com.
 
-A practical TengClaw workflow is:
-
-1. State the research goal in natural language.
-2. Let TengClaw generate a baseline.
-3. Move to manual simulation mode once the setup is stable and repeatable execution matters.
-4. Use `timeseries` and `study` to compare candidate behavior.
-5. Use `field_snapshot` and `field_animation` to interpret the physics.
-6. Use `report` to preserve and revisit results.
-7. Continue the study through session memory and experiment graph context.
-8. For unsupported requests, review the extension proposal before confirming.
-
-For papers, demos, or open-source examples, the most useful outputs to show are:
-
-- `teng_result`
-- `teng_trace`
-- experiment graph entries
-- research state
-- controlled self-extension proposal flow
-
-
-## 13. Third-party notices
+## 12. Third-party notices
 
 TengClaw is built on top of OpenClaw.
 
