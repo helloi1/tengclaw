@@ -38,6 +38,7 @@ TengClaw is designed to help users:
 - run stable TENG solvers
 - compare candidate designs
 - inspect time-series, field snapshots, and field animations
+- inspect time-series output voltage curves defined by `output_voltage = transfer_charge / C` when an external capacitance is provided
 - preserve results through run artifacts, experiment graphs, and session memory
 - understand when a request is unsupported and, in local/admin research mode, propose controlled extensions for supported extension families
 
@@ -111,6 +112,18 @@ The stable backend currently supports:
 
 These actions are backed by the solver and worker code in the repository.
 
+Within the stable backend, `timeseries` currently supports three stable observables:
+
+- `transfer_charge`
+- `electric_current`
+- `output_voltage`
+
+For `output_voltage`, users must provide an external capacitance through `material.capacitance`, and the result is defined as:
+
+`output_voltage = transfer_charge / material.capacitance`
+
+This quantity is not the same as a spatial electric-potential map.
+
 ### 3.2 Experimental Backend
 
 The experimental backend is used only for controlled extension scenarios in local/admin research mode.
@@ -151,7 +164,7 @@ The public tools are:
 |---|---|---|
 | `tengclaw_orchestrate` | Natural-language research entry point | `teng_trace`, `teng_result`, graph memory |
 | `teng_simulate` | Single-state simulation | charge distribution, primary charge, snapshot report |
-| `teng_timeseries` | Time-series simulation | transfer charge or electric current curve |
+| `teng_timeseries` | Time-series simulation | transfer charge, electric current, or output voltage curve |
 | `teng_optimize` | Parameter scan and optimization | best parameters, ranking, trend plot |
 | `teng_field_snapshot` | Static potential or electric-field visualization | potential / field preview |
 | `teng_field_animation` | Dynamic field visualization | inline video, MP4, poster, time-range summary |
@@ -184,6 +197,7 @@ Typical manual-simulation usage includes:
 - choosing a specific stable action such as `simulate`, `timeseries`, or `field_snapshot`
 - setting motion, resolution, and device parameters directly
 - running a solver with minimal interpretation overhead
+- when `timeseries` is used with `output_voltage`, explicitly entering `material.capacitance`
 
 Compared with `tengclaw_orchestrate`:
 
@@ -388,7 +402,7 @@ Expected output:
 
 ### Step 3: Analyze Current over Time
 
-Use `teng_timeseries` for transfer-charge or current curves.
+Use `teng_timeseries` for transfer-charge, current, or output-voltage curves.
 
 Example request:
 
@@ -409,6 +423,32 @@ Expected output:
 - peak absolute current
 - plot image
 - report artifact
+
+For output voltage, use:
+
+```text
+Call teng_timeseries with:
+mode=CS
+outputKind=output_voltage
+geometry={kind:"rectangle", n_length:50, n_width:50, b:0.02}
+material={rt:0.0001, d:0.1, ebsenr:2.2, capacitance:1e-9}
+motion={kind:"expression", expression:"0.10-0.03*sin(2*pi*t)"}
+resolution={t_start:0.0, t_end:1.0, steps:120}
+device=cpu
+```
+
+Expected output:
+
+- sampled output-voltage curve
+- peak absolute output voltage
+- plot image
+- report artifact
+
+The contract requirement is:
+
+- `material.capacitance` must be explicitly provided and must be positive
+- `output_voltage = transfer_charge / material.capacitance`
+- this is not the same quantity as the potential field shown by `teng_field_snapshot` or `teng_field_animation`
 
 ### Step 4: Optimize a Parameter
 
@@ -614,4 +654,3 @@ SOFTWARE.
   howpublished = {\url{https://github.com/openclaw/openclaw}}
 }
 ```
-
