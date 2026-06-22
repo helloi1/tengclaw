@@ -2,7 +2,7 @@
 
 This document introduces the public-facing usage of TengClaw ahead of the open-source code release. It focuses on what TengClaw does, which tools are exposed, how to read the outputs, and how to structure a typical research workflow.
 
-Web access url: https://tactics-inspections-hotels-tigers.trycloudflare.com
+Web access url: https://dover-gibraltar-john-wilderness.trycloudflare.com/
 
 Should our website be of assistance to you, kindly leave us a star.
 
