@@ -6,7 +6,7 @@ Web access url: https://dover-gibraltar-john-wilderness.trycloudflare.com/
 
 Should our website be of assistance to you, kindly leave us a star.
 
-The paper introducing the physical core and implementation methodology of this platform will soon be released on arXiv. Previous foundational theoretical work:
+The paper introducing the physical core and implementation methodology of this platform now is released on arXiv https://arxiv.org/abs/2606.23051. Previous foundational theoretical work:
 
 1. Zhao, Hongfa, et al. "Theoretical modeling of contact-separation mode triboelectric nanogenerators from initial charge distribution." Energy & Environmental Science 17.6 (2024): 2228-2247. DOI: 10.1039/d3ee04143c
 2. Zhao, Hongfa, et al. "Theoretical analysis of triboelectric nanogenerators: Charge mechanisms, energy conversion, and multifunctional applications." Nano Energy (2025): 111382. DOI: 10.1016/j.nanoen.2025.111382
