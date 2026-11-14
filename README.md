@@ -2,8 +2,7 @@
 
 This document introduces the public-facing usage of TengClaw ahead of the open-source code release. It focuses on what TengClaw does, which tools are exposed, how to read the outputs, and how to structure a typical research workflow.
 
-Web access url: [https://dover-gibraltar-john-wilderness.trycloudflare.com/](https://traditions-computing-chester-taste.trycloudflare.com/)
-
+Web access url: https://warm-private-warnings-sanyo.trycloudflare.com/
 Should our website be of assistance to you, kindly leave us a star.
 
 The paper introducing the physical core and implementation methodology of this platform now is released on arXiv https://arxiv.org/abs/2606.23051. Previous foundational theoretical work:
