@@ -3,6 +3,12 @@
 This document introduces the public-facing usage of TengClaw ahead of the open-source code release. It focuses on what TengClaw does, which tools are exposed, how to read the outputs, and how to structure a typical research workflow.
 
 Web access url: https://warm-private-warnings-sanyo.trycloudflare.com/
+A model configuration available for experience：
+  {
+    base_url='https://api-inference.modelscope.cn/v1',
+    api_key='ms-047f59b6-9e5b-41dc-b33c-2de19424c4ec',
+    model='deepseek-ai/DeepSeek-V4.1-Flash-1017'
+  }
 Should our website be of assistance to you, kindly leave us a star.
 
 The paper introducing the physical core and implementation methodology of this platform now is released on arXiv https://arxiv.org/abs/2606.23051. Previous foundational theoretical work:
